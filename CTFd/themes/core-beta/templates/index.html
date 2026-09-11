@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block stylesheets %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+<section class="ns-hero">
+  <div class="container">
+    <div class="ns-hero__eyebrow">
+      <span class="ns-pulse"></span>
+      Zero Trust Network Access &middot; Hands-on Lab
+    </div>
+
+    <h1 class="ns-hero__title">
+      {% if Configs.ctf_name and Configs.ctf_name != "CTFd" %}
+        {{ Configs.ctf_name }}
+      {% else %}
+        Netskope <span class="ns-accent">ZTNA</span> Workshop
+      {% endif %}
+    </h1>
+
+    <p class="ns-hero__lead">
+      Work through a live Netskope Private Access environment: deploy a Publisher,
+      define private applications, build Zero Trust policies and trace the traffic
+      in Advanced Analytics. Each activity ends with a challenge to prove you got it working.
+    </p>
+
+    <div class="ns-hero__actions">
+      {% if authed() %}
+        <a href="{{ url_for('challenges.listing') }}" class="btn ns-btn-hero">
+          <i class="fas fa-play pe-2"></i>Start the workshop
+        </a>
+        <a href="{{ url_for('scoreboard.listing') }}" class="btn ns-btn-ghost">
+          <i class="fas fa-ranking-star pe-2"></i>Scoreboard
+        </a>
+      {% else %}
+        {% if registration_visible() %}
+          <a href="{{ url_for('auth.register') }}" class="btn ns-btn-hero">
+            <i class="fas fa-user-plus pe-2"></i>Create your account
+          </a>
+          <a href="{{ url_for('auth.login') }}" class="btn ns-btn-ghost">
+            <i class="fas fa-sign-in-alt pe-2"></i>I already have an account
+          </a>
+        {% else %}
+          <a href="{{ url_for('auth.login') }}" class="btn ns-btn-hero">
+            <i class="fas fa-sign-in-alt pe-2"></i>Sign in to start
+          </a>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section class="ns-section">
+  <div class="container">
+    <div class="ns-feature-grid">
+
+      <div class="ns-feature">
+        <div class="ns-feature__icon"><i class="fas fa-server"></i></div>
+        <div class="ns-feature__title">Deploy a Publisher</div>
+        <p class="ns-feature__text">
+          Stand up a Netskope Publisher and connect it to your tenant, then expose
+          private applications running in your datacenter or cloud.
+        </p>
+      </div>
+
+      <div class="ns-feature">
+        <div class="ns-feature__icon"><i class="fas fa-shield-halved"></i></div>
+        <div class="ns-feature__title">Zero Trust policies</div>
+        <p class="ns-feature__text">
+          Grant access by user, group, device posture and periodic re-authentication
+          instead of by network location.
+        </p>
+      </div>
+
+      <div class="ns-feature">
+        <div class="ns-feature__icon"><i class="fas fa-diagram-project"></i></div>
+        <div class="ns-feature__title">Real private apps</div>
+        <p class="ns-feature__text">
+          Web servers, RDP, SSH, Active Directory and network file shares, reached
+          through the browser or the Netskope Client.
+        </p>
+      </div>
+
+      <div class="ns-feature">
+        <div class="ns-feature__icon"><i class="fas fa-chart-line"></i></div>
+        <div class="ns-feature__title">Prove it in the logs</div>
+        <p class="ns-feature__text">
+          Use NPA traffic logs and Advanced Analytics to confirm what you built and
+          to troubleshoot what you did not.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% if page and page.content %}
+<section class="ns-section pt-0">
+  <div class="container">
+    <div class="card">
+      <div class="card-body challenge-desc">
+        {{ page.content | safe }}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="ns-section pt-0">
+  <div class="container text-center">
+    <h2 class="ns-section__title">Ready when you are</h2>
+    <p class="ns-section__sub">
+      Activities are ordered so the next one is always at the top of the list.
+      Work down the categories at your own pace.
+    </p>
+    {% if authed() %}
+      <a href="{{ url_for('challenges.listing') }}" class="btn ns-btn-hero">
+        <i class="fas fa-flag-checkered pe-2"></i>Go to the challenges
+      </a>
+    {% else %}
+      <a href="{{ url_for('auth.login') }}" class="btn ns-btn-hero">
+        <i class="fas fa-sign-in-alt pe-2"></i>Sign in to start
+      </a>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}
