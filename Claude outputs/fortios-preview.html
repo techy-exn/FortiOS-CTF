@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FortiOS 8.0 - Theme Preview</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root{
+    --ns-orange:#da291c; --ns-navy:#0b0f19; --ns-blue:#ee3124;
+    --ns-white:#fff; --ns-offwhite:#f5f6f8; --ns-grey:#53565a;
+    --ns-font-mono:"SFMono-Regular",Menlo,Monaco,Consolas,monospace;
+    --ns-gradient:linear-gradient(135deg,#0b0f19 0%,#3a1512 55%,#5a1a15 100%);
+  }
+  body{font-family:"Segoe UI",system-ui,sans-serif;margin:0;background:#eef0f3;color:#1f2430;}
+  .previewbar{background:var(--ns-navy);color:#fff;padding:.7rem 1.25rem;font-size:.85rem;letter-spacing:.5px;position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:.6rem;}
+  .previewbar b{color:var(--ns-orange);}
+  .themetoggle{margin-left:auto;background:var(--ns-orange);border:none;color:#fff;font-weight:600;padding:.4rem .9rem;border-radius:.4rem;cursor:pointer;}
+  main{max-width:1040px;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+  .navbar-demo{background:var(--ns-navy);color:#fff;border-radius:.6rem;padding:.75rem 1.25rem;display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem;font-weight:600;}
+  .navbar-demo .brand{color:#fff;font-weight:800;letter-spacing:.5px;font-size:1.1rem;}
+  .navbar-demo a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.95rem;}
+  .navbar-demo a:hover{color:var(--ns-orange);}
+  /* mini hero */
+  .hero{position:relative;overflow:hidden;background:var(--ns-navy);color:#fff;border-radius:.75rem;padding:3rem 2rem;margin-bottom:2.5rem;isolation:isolate;}
+  .hero::after{content:"";position:absolute;z-index:-1;top:-30%;right:-8%;width:30rem;height:30rem;border-radius:50%;background:radial-gradient(circle,rgba(218,41,28,.35) 0%,rgba(218,41,28,0) 68%);}
+  .eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--ns-font-mono);font-size:.78rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--ns-orange);background:rgba(218,41,28,.12);border:1px solid rgba(218,41,28,.32);border-radius:999px;padding:.4rem .95rem;margin-bottom:1.2rem;}
+  .pulse{width:7px;height:7px;border-radius:50%;background:var(--ns-orange);box-shadow:0 0 0 0 rgba(218,41,28,.8);animation:pulse 2s infinite;}
+  @keyframes pulse{70%{box-shadow:0 0 0 9px rgba(218,41,28,0);}100%{box-shadow:0 0 0 0 rgba(218,41,28,0);}}
+  .hero h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;margin:0 0 .8rem;line-height:1.08;}
+  .hero h1 .accent{color:var(--ns-orange);}
+  .hero p{max-width:46rem;color:rgba(255,255,255,.82);line-height:1.6;margin:0 0 1.6rem;}
+  .btn-hero{display:inline-block;background:var(--ns-orange);color:#fff;font-weight:700;padding:.8rem 1.8rem;border-radius:.4rem;text-decoration:none;box-shadow:0 8px 26px rgba(218,41,28,.38);}
+  .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:1.25rem;margin-top:2.5rem;}
+  .feature{background:#fff;border:1px solid rgba(11,15,25,.08);border-left:3px solid var(--ns-orange);border-radius:.6rem;padding:1.4rem;box-shadow:0 4px 16px rgba(11,15,25,.06);}
+  .feature .ic{display:inline-grid;place-items:center;width:2.6rem;height:2.6rem;border-radius:.5rem;background:rgba(218,41,28,.12);color:var(--ns-orange);font-size:1.1rem;margin-bottom:.8rem;}
+  .feature h3{margin:.2rem 0 .3rem;color:var(--ns-navy);font-size:1.02rem;}
+  .feature p{margin:0;color:var(--ns-grey);font-size:.92rem;line-height:1.55;}
+  .section-label{font-family:var(--ns-font-mono);text-transform:uppercase;letter-spacing:2px;font-size:.72rem;color:var(--ns-orange);margin:2.5rem 0 .5rem;}
+  .divider{border:none;border-top:1px dashed rgba(11,15,25,.15);margin:2.5rem 0;}
+  [data-bs-theme="dark"] body{background:#0b0f19;color:#e5e7eb;}
+  [data-bs-theme="dark"] .feature{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);}
+  [data-bs-theme="dark"] .feature h3{color:#fff;}
+  [data-bs-theme="dark"] .feature p{color:rgba(255,255,255,.72);}
+</style>
+</head>
+<body>
+<div class="previewbar"><i class="fas fa-eye"></i> <b>FortiOS 8.0</b> theme preview &mdash; how it looks after <code>make theme</code>. Toggle light/dark to check both.
+  <button class="themetoggle" onclick="var h=document.documentElement;h.setAttribute('data-bs-theme',h.getAttribute('data-bs-theme')==='dark'?'light':'dark');">Toggle theme</button>
+</div>
+<main>
+
+  <div class="navbar-demo">
+    <span class="brand">FortiOS 8.0</span>
+    <a href="#">Challenges</a><a href="#">Scoreboard</a><a href="#">Users</a>
+    <a href="#" style="margin-left:auto;"><i class="fas fa-user-circle"></i></a>
+  </div>
+
+  <div class="section-label">Landing page</div>
+  <div class="hero">
+    <span class="eyebrow"><span class="pulse"></span> FortiOS 8.0 &middot; Hands-On Roadshow</span>
+    <h1>FortiOS <span class="accent">8.0</span> Hands-On Roadshow</h1>
+    <p>Get an early, hands-on look at the latest innovations coming to the Fortinet Security Fabric. Explore new features, configuration enhancements and operational improvements through practical lab exercises &mdash; and each activity ends with a challenge to prove you got it working.</p>
+    <a class="btn-hero" href="#"><i class="fas fa-play"></i>&nbsp; Start the workshop</a>
+    <div class="feature-grid">
+      <div class="feature"><span class="ic"><i class="fas fa-rocket"></i></span><h3>What's new in 8.0</h3><p>Get an early look at the newest features and enhancements landing across FortiOS 8.0 and the Fortinet Security Fabric.</p></div>
+      <div class="feature"><span class="ic"><i class="fas fa-sliders"></i></span><h3>Configuration enhancements</h3><p>Work through refreshed configuration workflows and operational improvements, hands-on, in a live FortiGate environment.</p></div>
+      <div class="feature"><span class="ic"><i class="fas fa-diagram-project"></i></span><h3>The Security Fabric</h3><p>See how FortiGate, FortiAnalyzer, FortiManager and the rest of the Fabric work together across your network.</p></div>
+      <div class="feature"><span class="ic"><i class="fas fa-flag-checkered"></i></span><h3>Prove it in the labs</h3><p>Every lab ends with a challenge, so you leave able to take new insights straight back to your customers.</p></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-label">Page &middot; Credentials</div>
+  <style>
+  .fos-page {
+    --fos-red: var(--ns-orange, #da291c);
+    --fos-dark: var(--ns-navy, #0b0f19);
+    --fos-border: rgba(11, 15, 25, 0.10);
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1.5rem 0 3rem;
+  }
+
+  .fos-page__head {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .fos-page__badge {
+    display: inline-grid;
+    place-items: center;
+    width: 2.9rem;
+    height: 2.9rem;
+    border-radius: 0.75rem;
+    background: var(--fos-red);
+    color: #fff;
+    font-size: 1.25rem;
+    flex: none;
+    box-shadow: 0 6px 18px rgba(218, 41, 28, 0.30);
+  }
+
+  .fos-page__title {
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  .fos-page__sub {
+    color: #6b7280;
+    margin: 0.25rem 0 1.75rem;
+    max-width: 60ch;
+  }
+
+  .fos-callout {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(218, 41, 28, 0.06);
+    border: 1px solid rgba(218, 41, 28, 0.22);
+    border-left: 4px solid var(--fos-red);
+    border-radius: 0.6rem;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 1.75rem;
+    font-size: 1rem;
+  }
+
+  .fos-callout code {
+    background: var(--fos-dark);
+    color: #fff;
+    padding: 0.15rem 0.55rem;
+    border-radius: 0.35rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+
+  .fos-table-wrap {
+    overflow-x: auto;
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 26px rgba(11, 15, 25, 0.08);
+    border: 1px solid var(--fos-border);
+  }
+
+  .fos-table {
+    border-collapse: collapse;
+    width: 100%;
+    background: #fff;
+    font-size: 0.97rem;
+  }
+
+  .fos-table thead th {
+    background: var(--fos-dark);
+    color: #fff;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    padding: 0.9rem 1.1rem;
+    white-space: nowrap;
+  }
+
+  .fos-table tbody td {
+    padding: 0.85rem 1.1rem;
+    border-top: 1px solid var(--fos-border);
+    color: #1f2430;
+  }
+
+  .fos-table tbody tr:nth-child(even) td {
+    background: #f7f8fa;
+  }
+
+  .fos-table tbody tr:hover td {
+    background: rgba(218, 41, 28, 0.05);
+  }
+
+  .fos-table td:first-child {
+    font-weight: 600;
+    color: var(--fos-dark);
+  }
+
+  .fos-cred {
+    font-family: var(--ns-font-mono, "SFMono-Regular", Menlo, monospace);
+    background: #eef0f3;
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.35rem;
+    color: #1f2430;
+  }
+
+  .fos-pill {
+    display: inline-block;
+    background: rgba(11, 15, 25, 0.06);
+    color: #4b5563;
+    border-radius: 999px;
+    padding: 0.15rem 0.7rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  /* Dark theme support */
+  [data-bs-theme="dark"] .fos-table { background: #12161f; }
+  [data-bs-theme="dark"] .fos-table tbody td { color: #e5e7eb; border-color: rgba(255,255,255,0.08); }
+  [data-bs-theme="dark"] .fos-table td:first-child { color: #fff; }
+  [data-bs-theme="dark"] .fos-table tbody tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+  [data-bs-theme="dark"] .fos-cred { background: rgba(255,255,255,0.08); color: #e5e7eb; }
+  [data-bs-theme="dark"] .fos-page__sub { color: #9aa3b2; }
+</style>
+
+<div class="fos-page">
+
+  <div class="fos-page__head">
+    <span class="fos-page__badge"><i class="fas fa-key"></i></span>
+    <h1 class="fos-page__title">Credentials</h1>
+  </div>
+
+  <p class="fos-page__sub">
+    Use the <strong>Navigator</strong> to quickly reach every FortiOS 8.0 resource,
+    security solution and VM in your environment.
+  </p>
+
+  <div class="fos-callout">
+    <i class="fas fa-triangle-exclamation" style="color:var(--fos-red);font-size:1.15rem;"></i>
+    <span>The <strong>FortiOS 8.0 password</strong> is <code>Exclusive123!</code></span>
+  </div>
+
+  <div class="fos-table-wrap">
+    <table class="fos-table">
+      <thead>
+        <tr>
+          <th>Application</th>
+          <th>Authentication</th>
+          <th>Username</th>
+          <th>Password</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>IT Workstation 1</td>
+          <td><span class="fos-pill">Password</span></td>
+          <td><span class="fos-cred">Fortinet</span></td>
+          <td><span class="fos-cred">Exclusive123!</span></td>
+        </tr>
+        <tr>
+          <td>FortiGate Edge</td>
+          <td><span class="fos-pill">Password</span></td>
+          <td><span class="fos-cred">admin</span></td>
+          <td><span class="fos-cred">Exclusive123!</span></td>
+        </tr>
+        <tr>
+          <td>FortiAnalyzer</td>
+          <td><span class="fos-pill">Password</span></td>
+          <td><span class="fos-cred">admin</span></td>
+          <td><span class="fos-cred">Exclusive123!</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+
+  <hr class="divider">
+  <div class="section-label">Page &middot; IP Addresses</div>
+  <style>
+  .fos-page {
+    --fos-red: var(--ns-orange, #da291c);
+    --fos-dark: var(--ns-navy, #0b0f19);
+    --fos-border: rgba(11, 15, 25, 0.10);
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1.5rem 0 3rem;
+  }
+
+  .fos-page__head {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .fos-page__badge {
+    display: inline-grid;
+    place-items: center;
+    width: 2.9rem;
+    height: 2.9rem;
+    border-radius: 0.75rem;
+    background: var(--fos-red);
+    color: #fff;
+    font-size: 1.2rem;
+    flex: none;
+    box-shadow: 0 6px 18px rgba(218, 41, 28, 0.30);
+  }
+
+  .fos-page__title { margin: 0; line-height: 1.1; }
+
+  .fos-page__sub {
+    color: #6b7280;
+    margin: 0.25rem 0 1.75rem;
+    max-width: 60ch;
+  }
+
+  .fos-table-wrap {
+    overflow-x: auto;
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 26px rgba(11, 15, 25, 0.08);
+    border: 1px solid var(--fos-border);
+  }
+
+  .fos-table {
+    border-collapse: collapse;
+    width: 100%;
+    background: #fff;
+    font-size: 0.97rem;
+  }
+
+  .fos-table thead th {
+    background: var(--fos-dark);
+    color: #fff;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    padding: 0.9rem 1.1rem;
+    white-space: nowrap;
+  }
+
+  .fos-table tbody td {
+    padding: 0.85rem 1.1rem;
+    border-top: 1px solid var(--fos-border);
+    color: #1f2430;
+  }
+
+  .fos-table tbody tr:nth-child(even) td { background: #f7f8fa; }
+  .fos-table tbody tr:hover td { background: rgba(218, 41, 28, 0.05); }
+
+  .fos-table td:first-child {
+    font-weight: 600;
+    color: var(--fos-dark);
+  }
+
+  .fos-ip {
+    font-family: var(--ns-font-mono, "SFMono-Regular", Menlo, monospace);
+    color: var(--fos-red);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .fos-ip:hover { text-decoration: underline; }
+
+  .fos-ip i { color: #9aa3b2; margin-right: 0.4rem; font-size: 0.85em; }
+
+  [data-bs-theme="dark"] .fos-table { background: #12161f; }
+  [data-bs-theme="dark"] .fos-table tbody td { color: #e5e7eb; border-color: rgba(255,255,255,0.08); }
+  [data-bs-theme="dark"] .fos-table td:first-child { color: #fff; }
+  [data-bs-theme="dark"] .fos-table tbody tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+  [data-bs-theme="dark"] .fos-page__sub { color: #9aa3b2; }
+</style>
+
+<div class="fos-page">
+
+  <div class="fos-page__head">
+    <span class="fos-page__badge"><i class="fas fa-network-wired"></i></span>
+    <h1 class="fos-page__title">IP Addresses</h1>
+  </div>
+
+  <p class="fos-page__sub">
+    Management addresses for the Fortinet solutions in your FortiOS 8.0 lab
+    environment. Open a link to reach each device's web interface.
+  </p>
+
+  <div class="fos-table-wrap">
+    <table class="fos-table">
+      <thead>
+        <tr>
+          <th>Application</th>
+          <th>IP address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>FortiDeceptor</td>
+          <td><a class="fos-ip" href="https://10.60.10.50"><i class="fas fa-link"></i>https://10.60.10.50</a></td>
+        </tr>
+        <tr>
+          <td>FortiPAM</td>
+          <td><a class="fos-ip" href="https://10.60.10.40"><i class="fas fa-link"></i>https://10.60.10.40</a></td>
+        </tr>
+        <tr>
+          <td>Guardian</td>
+          <td><a class="fos-ip" href="https://10.60.10.200"><i class="fas fa-link"></i>https://10.60.10.200</a></td>
+        </tr>
+        <tr>
+          <td>FortiGate OT</td>
+          <td><a class="fos-ip" href="https://10.60.10.2"><i class="fas fa-link"></i>https://10.60.10.2</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+
+  <hr class="divider">
+  <div class="section-label">Page &middot; Products</div>
+  <style>
+  .fos-page {
+    --fos-red: var(--ns-orange, #da291c);
+    --fos-dark: var(--ns-navy, #0b0f19);
+    --fos-border: rgba(11, 15, 25, 0.10);
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1.5rem 0 3rem;
+  }
+
+  .fos-page__head {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .fos-page__badge {
+    display: inline-grid;
+    place-items: center;
+    width: 2.9rem;
+    height: 2.9rem;
+    border-radius: 0.75rem;
+    background: var(--fos-red);
+    color: #fff;
+    font-size: 1.2rem;
+    flex: none;
+    box-shadow: 0 6px 18px rgba(218, 41, 28, 0.30);
+  }
+
+  .fos-page__title { margin: 0; line-height: 1.1; }
+
+  .fos-page__sub {
+    color: #6b7280;
+    margin: 0.25rem 0 1.75rem;
+    max-width: 68ch;
+    line-height: 1.6;
+  }
+
+  .fos-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--fos-dark);
+    margin: 2rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(218, 41, 28, 0.18);
+  }
+  .fos-section-title i { color: var(--fos-red); }
+
+  .fos-callout {
+    background: rgba(218, 41, 28, 0.06);
+    border: 1px solid rgba(218, 41, 28, 0.22);
+    border-left: 4px solid var(--fos-red);
+    border-radius: 0.6rem;
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+    line-height: 1.6;
+  }
+  .fos-callout strong { color: var(--fos-dark); }
+
+  .fos-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 1rem 0 0.5rem;
+    padding: 0;
+    list-style: none;
+  }
+  .fos-chips li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff;
+    border: 1px solid var(--fos-border);
+    border-left: 3px solid var(--fos-red);
+    border-radius: 0.5rem;
+    padding: 0.55rem 0.95rem;
+    font-weight: 600;
+    color: var(--fos-dark);
+    box-shadow: 0 3px 10px rgba(11, 15, 25, 0.05);
+  }
+  .fos-chips li i { color: var(--fos-red); }
+
+  .fos-table-wrap {
+    overflow-x: auto;
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 26px rgba(11, 15, 25, 0.08);
+    border: 1px solid var(--fos-border);
+    margin-top: 0.5rem;
+  }
+
+  .fos-table {
+    border-collapse: collapse;
+    width: 100%;
+    background: #fff;
+    font-size: 0.97rem;
+  }
+
+  .fos-table thead th {
+    background: var(--fos-dark);
+    color: #fff;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    padding: 0.9rem 1.1rem;
+  }
+
+  .fos-table tbody td {
+    padding: 0.85rem 1.1rem;
+    border-top: 1px solid var(--fos-border);
+    color: #1f2430;
+    line-height: 1.5;
+  }
+  .fos-table tbody tr:nth-child(even) td { background: #f7f8fa; }
+  .fos-table tbody tr:hover td { background: rgba(218, 41, 28, 0.05); }
+  .fos-table td:first-child {
+    font-weight: 700;
+    color: var(--fos-dark);
+    white-space: nowrap;
+  }
+
+  [data-bs-theme="dark"] .fos-table { background: #12161f; }
+  [data-bs-theme="dark"] .fos-table tbody td { color: #e5e7eb; border-color: rgba(255,255,255,0.08); }
+  [data-bs-theme="dark"] .fos-table td:first-child { color: #fff; }
+  [data-bs-theme="dark"] .fos-table tbody tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+  [data-bs-theme="dark"] .fos-page__sub,
+  [data-bs-theme="dark"] .fos-section-title { color: #e5e7eb; }
+  [data-bs-theme="dark"] .fos-chips li { background: rgba(255,255,255,0.04); color: #fff; border-color: rgba(255,255,255,0.10); border-left-color: var(--fos-red); }
+</style>
+
+<div class="fos-page">
+
+  <div class="fos-page__head">
+    <span class="fos-page__badge"><i class="fas fa-boxes-stacked"></i></span>
+    <h1 class="fos-page__title">Inventory: Fortinet Products</h1>
+  </div>
+
+  <p class="fos-page__sub">
+    An inventory of the Fortinet components used in this workshop. Every product is
+    running <strong>FortiOS 8.0</strong>, and you are welcome to explore any of the
+    machines you like.
+  </p>
+
+  <div class="fos-callout">
+    The FortiOS 8.0 workshop is <strong>modular</strong> and <strong>scalable</strong>.
+    <strong>Each session is unique</strong> &mdash; content is continuously updated and new
+    features are introduced. Updates will continue in the coming years, aligned with
+    future FortiOS releases.
+  </div>
+
+  <p class="fos-page__sub" style="margin-bottom:0;">
+    The FortiOS environment is hosted on our <strong>Cloudshare</strong>.
+  </p>
+
+  <div class="fos-section-title"><i class="fas fa-shield-halved"></i>Fortinet products</div>
+
+  <p class="fos-page__sub" style="margin-bottom:0.5rem;">
+    An overview of the Fortinet solutions deployed in the FortiOS workshop.
+  </p>
+
+  <ul class="fos-chips">
+    <li><i class="fas fa-shield-halved"></i>FortiGate</li>
+    <li><i class="fas fa-chart-line"></i>FortiAnalyzer</li>
+    <li><i class="fas fa-sitemap"></i>FortiManager</li>
+    <li><i class="fas fa-user-shield"></i>FortiAuthenticator</li>
+    <li><i class="fas fa-laptop-code"></i>FortiClient EMS</li>
+    <li><i class="fas fa-key"></i>FortiPAM</li>
+  </ul>
+
+  <div class="fos-section-title"><i class="fas fa-cloud"></i>Environment</div>
+
+  <p class="fos-page__sub">
+    All tools and products live inside Cloudshare. Everyone gets a completely
+    separate environment, isolated from the others.
+  </p>
+
+  <div class="fos-table-wrap">
+    <table class="fos-table">
+      <thead>
+        <tr>
+          <th style="min-width:200px;">Tool / Solution</th>
+          <th>Functionality</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>NGFW</td>
+          <td>Next-gen firewall with application control, IPS, threat protection and URL filtering.</td>
+        </tr>
+        <tr>
+          <td>FortiAnalyzer</td>
+          <td>Centralized logging, analytics, reporting and threat visibility for Fortinet devices.</td>
+        </tr>
+        <tr>
+          <td>FortiManager</td>
+          <td>Centralized management, policy provisioning and automation for Fortinet security devices.</td>
+        </tr>
+        <tr>
+          <td>FortiAuthenticator</td>
+          <td>Identity and access management with authentication, SSO and certificate services.</td>
+        </tr>
+        <tr>
+          <td>FortiClient EMS</td>
+          <td>Centralized endpoint management, security posture and Zero Trust access control.</td>
+        </tr>
+        <tr>
+          <td>FortiPAM</td>
+          <td>Privileged Access Management (PAM) with Secure Remote Access (SRA) for protecting privileged accounts, managing credentials, and securing vendor and administrator access to critical systems.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+
+</main>
+</body>
+</html>

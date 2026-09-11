@@ -1,8 +1,9 @@
-# Netskope ZTNA Workshop
+# FortiOS 8.0 Hands-On Roadshow
 
-A self-hosted, hands-on workshop platform for the **Netskope Zero Trust Network
-Access (ZTNA / NPA)** solution. Students work through ordered activities, submit
-answers, and are scored automatically or after instructor approval.
+A self-hosted, hands-on workshop platform for the **FortiOS 8.0** roadshow, giving
+attendees an early look at the latest innovations across the **Fortinet Security
+Fabric**. Students work through ordered lab activities, submit answers, and are
+scored automatically or after instructor approval.
 
 Built for internal, private use. Deployment is Docker Compose only.
 
@@ -153,16 +154,19 @@ make theme
 # or: cd CTFd/themes/core-beta && npm install && npm run build
 ```
 
-The current palette is Netskope One:
+The current palette is Fortinet:
 
 | Variable | Value | Used for |
 | --- | --- | --- |
-| `$brand-orange` | `#ff8300` | Primary accent, buttons, links, highlights |
-| `$brand-navy` | `#081a59` | Navbar, hero, page headers |
-| `$brand-blue` | `#00a7ce` | Secondary accents, gradients |
-| `$brand-offwhite` | `#e8fcff` | Light surfaces |
+| `$brand-orange` | `#da291c` | Primary accent (Fortinet red): buttons, links, highlights |
+| `$brand-navy` | `#0b0f19` | Navbar, hero, page headers (near-black) |
+| `$brand-blue` | `#ee3124` | Secondary accents, gradients |
+| `$brand-offwhite` | `#f5f6f8` | Light surfaces |
 | `$brand-grey` | `#53565a` | Body text, muted labels |
 | `$brand-pending` | `#a855f7` | "Awaiting review" state |
+
+> The primary accent variable keeps the name `$brand-orange` so existing
+> stylesheet references pick up the Fortinet red without renaming.
 
 Fonts are set in the same file:
 

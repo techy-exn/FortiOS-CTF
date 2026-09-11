@@ -8,25 +8,27 @@
 //  Every colour and font in the user interface derives from the values
 //  below, so you never have to hunt through stylesheets.
 //
-//  Current palette: Netskope One (SASE) - orange / blue / white.
+//  Current palette: Fortinet - red / dark navy / white.
 // =====================================================================
 
 // ---------------------------------------------------------------------
 //  1. BRAND COLOURS
 // ---------------------------------------------------------------------
 
-// Netskope signature orange - primary accent, buttons, links, highlights.
-$brand-orange: #ff8300 !default;
+// Fortinet signature red (Pantone 485 C) - primary accent, buttons,
+// links, highlights. Kept as $brand-orange so every existing reference
+// in the stylesheets picks it up without renaming.
+$brand-orange: #da291c !default;
 
-// Deep navy blue - dark surfaces, headers, the cyber background.
-$brand-navy: #081a59 !default;
+// Deep near-black navy - dark surfaces, headers, the cyber background.
+$brand-navy: #0b0f19 !default;
 
-// A brighter blue used for secondary accents and gradients.
-$brand-blue: #00a7ce !default;
+// A brighter red used for secondary accents and gradients.
+$brand-blue: #ee3124 !default;
 
 // White / near-white light page surfaces.
 $brand-white: #ffffff !default;
-$brand-offwhite: #e8fcff !default;
+$brand-offwhite: #f5f6f8 !default;
 
 // Neutral grey - body text on light surfaces, muted labels.
 $brand-grey: #53565a !default;
