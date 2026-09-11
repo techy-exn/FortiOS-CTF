@@ -1,3 +1,6 @@
+---
+state: hidden                     # visible | hidden
+---
 
 <br>
 

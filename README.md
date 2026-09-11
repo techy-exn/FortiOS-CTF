@@ -32,7 +32,7 @@ Built for internal, private use. Deployment is Docker Compose only.
 Requirements: Docker with the Compose plugin. Nothing else.
 
 ```bash
-cd netskope-ctfd-main
+cd FortiOS-CTF
 docker compose up -d --build
 ```
 
@@ -53,11 +53,11 @@ python manage.py sync-content — the CLI command I added
 
 What it actually does, walking data/ (skipping images/ and TEMPLATE.md):
 
-A folder → a category. 2.Publisher/ becomes category "Publisher".
-A file in a folder → a challenge. 2.1 Deploy Publisher.md becomes a challenge named "Deploy Publisher".
+A folder → a category. 5. High Availability/ becomes category "High Availability".
+A file in a folder → a challenge. 5.1 Set up HA cluster.md becomes a challenge named "Set up HA cluster".
 A file at the top level → a page. 0. Welcome.md becomes /welcome.
-The number prefix → order_id. 2.1 becomes 2001, so it sorts above 2.2.
-The trailing line after </div> → the flag. In 1.2 User Portal App.md that's 8.8.8.8, and it's stripped from the visible text so students don't see the answer.
+The number prefix → order_id. 5.1 becomes 5001, so it sorts above 5.2.
+The trailing line after </div> → the flag. In 2.2 Review login logs.md that's the answer, and it's stripped from the visible text so students don't see it.
 Front-matter (if present) overrides any of the above, and is how you set MCQ choices or requires_approval: true.
 /files/<md5hash>/x.jpg → /images/x.jpg so images resolve from data/images/.
 
@@ -82,11 +82,11 @@ python manage.py sync-content — the CLI command I added
 
 What it actually does, walking data/ (skipping images/ and TEMPLATE.md):
 
-- A folder → a category. 2.Publisher/ becomes category "Publisher".
-- A file in a folder → a challenge. 2.1 Deploy Publisher.md becomes a challenge named "Deploy Publisher".
+- A folder → a category. 5. High Availability/ becomes category "High Availability".
+- A file in a folder → a challenge. 5.1 Set up HA cluster.md becomes a challenge named "Set up HA cluster".
 - A file at the top level → a page. 0. Welcome.md becomes /welcome.
 - The number prefix → order_id. 2.1 becomes 2001, so it sorts above 2.2.
-The trailing line after </div> → the flag. In 1.2 User Portal App.md that's 8.8.8.8, and it's stripped from the visible text so students don't see the answer.
+The trailing line after </div> → the flag. In 2.2 Review login logs.md that's the answer, and it's stripped from the visible text so students don't see it.
 - Front-matter (if present) overrides any of the above, and is how you set MCQ choices or requires_approval: true.
 /files/<md5hash>/x.jpg → /images/x.jpg so images resolve from data/images/.
 
@@ -216,11 +216,11 @@ the admin UI to write a challenge**, and you never have to upload an image.
 data/
 |-- images/                        <- all screenshots, served at /images/
 |-- 0. Welcome.md                  <- top-level file  = a page
-|-- 1. Warming Up/                 <- folder          = a category
-|   |-- 1.1 Netskope Any App.md    <- file in folder  = a challenge
-|   `-- 1.2 User Portal App.md
-|-- 2.Publisher/
-|   `-- 2.1 Deploy Publisher.md
+|-- 1. SD-WAN/                     <- folder          = a category
+|   |-- 1.1 SD-WAN steering.md     <- file in folder  = a challenge
+|   `-- 1.2 SD-WAN config review.md
+|-- 5. High Availability/
+|   `-- 5.1 Set up HA cluster.md
 |-- Inventory.md                   <- page at /inventory
 `-- topology.md                    <- page at /topology
 ```
@@ -305,7 +305,7 @@ cooldown: 0       # no wait on this one
 Drop image files into `data/images/` and reference them by filename:
 
 ```markdown
-![Publisher status](/images/publisher_status.jpg)
+![HA cluster status](/images/HA_In_Synch.jpg)
 ```
 
 That is the whole workflow - no uploads, no hashed URLs. Images are served
@@ -321,8 +321,8 @@ optional - with no front matter at all, sensible defaults apply.
 
 ```yaml
 ---
-title: Locate the User Portal      # defaults to the filename
-category: Warming Up               # defaults to the folder name
+title: Set up HA cluster           # defaults to the filename
+category: High Availability        # defaults to the folder name
 value: 100                         # points, default 100
 order: 1200                        # display order, default from the filename
 state: visible                     # visible | hidden
@@ -335,15 +335,15 @@ case_insensitive: true             # default true
 requires_approval: false           # true = instructor must approve
 
 choices:                           # presence of choices = multiple choice
-  - SAML Forward Proxy
-  - Reverse Proxy
-  - Explicit Proxy
-answer: SAML Forward Proxy         # accepted choice(s), "|" for alternatives
+  - Active-Passive
+  - Active-Active
+  - Standalone
+answer: Active-Passive             # accepted choice(s), "|" for alternatives
 multiple: false                    # true = several choices must be selected
 
-requires: User Portal App          # must be solved first (name, or a list)
+requires: SD-WAN config review     # must be solved first (name, or a list)
 requires_anonymize: false          # true = mask the locked tile's name as "???"
-next: Steering Configuration       # target of the "Next Challenge" button
+next: HA changes in 8.0            # target of the "Next Challenge" button
 
 cooldown: 30                       # seconds to wait after a wrong answer
 ---
@@ -352,13 +352,13 @@ cooldown: 30                       # seconds to wait after a wrong answer
 > Inline `# comments` are supported and stripped, as in YAML: a `#` only starts
 > a comment when a space precedes it. So `grade: C#` and `answer: pass#1` keep
 > their hash, while `answer: Yes   # the answer` stores just `Yes`. If a value
-> must *begin* with a hash, quote it: `colour: "#ff8300"`.
+> must *begin* with a hash, quote it: `colour: "#da291c"`.
 
 ### Linking challenges: `requires` and `next`
 
 Both keys refer to challenges by **name** - that is the `title`, which defaults
-to the filename without its number prefix. `1.2 User Portal App.md` is named
-`User Portal App`.
+to the filename without its number prefix. `5.1 Set up HA cluster.md` is named
+`Set up HA cluster`.
 
 **`requires`** gates a challenge until its prerequisites are solved. The gated
 challenge **stays on the board as a locked tile** - greyed out, with a padlock,
@@ -375,7 +375,7 @@ altogether, use `state: hidden` instead of `requires`.
 
 ```yaml
 ---
-requires: User Portal App
+requires: SD-WAN config review
 ---
 ```
 
@@ -384,8 +384,8 @@ Several prerequisites, all of which must be solved:
 ```yaml
 ---
 requires:
-  - Netskope Any App
-  - User Portal App
+  - Set up HA cluster
+  - SD-WAN config review
 requires_anonymize: true
 ---
 ```
@@ -396,7 +396,7 @@ board each time.
 
 ```yaml
 ---
-next: Steering Configuration
+next: HA changes in 8.0
 ---
 ```
 
@@ -442,10 +442,10 @@ flag: ^ZTNA-\d+$
 
 ```yaml
 choices:
-  - SAML Forward Proxy
-  - Reverse Proxy
-  - Explicit Proxy
-answer: SAML Forward Proxy
+  - Active-Passive
+  - Active-Active
+  - Standalone
+answer: Active-Passive
 ```
 
 Several required answers become checkboxes; the order the student clicks them
@@ -453,11 +453,11 @@ does not matter:
 
 ```yaml
 choices:
-  - Publisher
-  - Netskope Client
-  - Steering configuration
-  - Physical firewall rule
-answer: Publisher|Netskope Client|Steering configuration
+  - FortiGate
+  - FortiAnalyzer
+  - FortiManager
+  - Physical switch
+answer: FortiGate|FortiAnalyzer|FortiManager
 multiple: true
 ```
 
