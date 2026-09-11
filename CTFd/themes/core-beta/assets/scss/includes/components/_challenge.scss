@@ -1,6 +1,27 @@
 /* Challenge styles
 -------------------------------------------------- */
 
+// Make the challenge pop-up use most of the window width.
+#challenge-window .modal-dialog {
+  max-width: 80vw;
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: 768px) {
+    max-width: 96vw;
+    width: 96vw;
+  }
+}
+
+// Submit button always has readable white text on the red background.
+.challenge-submit,
+.challenge-submit:hover,
+.challenge-submit:focus,
+.challenge-submit:active {
+  color: #fff !important;
+}
+
 .challenge-desc {
   overflow-wrap: anywhere;
 
