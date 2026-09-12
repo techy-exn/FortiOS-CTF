@@ -1,0 +1,29 @@
+# Keep the Docker build context small and prevent committed build artifacts /
+# dependencies from leaking into the image. The themes are compiled fresh in
+# the Dockerfile's themebuild stage, so their node_modules and prebuilt output
+# must NOT be copied in from the host.
+
+# Node dependencies (rebuilt in the image)
+**/node_modules
+
+# Python caches
+**/__pycache__
+*.pyc
+*.pyo
+
+# Version control and editor cruft
+.git
+.gitignore
+**/.DS_Store
+.vscode
+.idea
+
+# Local dev / secrets / logs
+.ctfd_secret_key
+*.log
+CTFd/logs/*
+!CTFd/logs/.gitkeep
+
+# Session backups and unrelated local folders
+Claude outputs/
+*.zip

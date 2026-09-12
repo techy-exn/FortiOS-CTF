@@ -53,63 +53,36 @@ python manage.py sync-content — the CLI command I added
 
 What it actually does, walking data/ (skipping images/ and TEMPLATE.md):
 
-A folder → a category. 5. High Availability/ becomes category "High Availability".
-A file in a folder → a challenge. 5.1 Set up HA cluster.md becomes a challenge named "Set up HA cluster".
-A file at the top level → a page. 0. Welcome.md becomes /welcome.
-The number prefix → order_id. 5.1 becomes 5001, so it sorts above 5.2.
-The trailing line after </div> → the flag. In 2.2 Review login logs.md that's the answer, and it's stripped from the visible text so students don't see it.
-Front-matter (if present) overrides any of the above, and is how you set MCQ choices or requires_approval: true.
-/files/<md5hash>/x.jpg → /images/x.jpg so images resolve from data/images/.
-
-When you run it: after any edit to data/. Editing a markdown file changes nothing on the site until you sync.
-
-By default it updates existing challenges, matching on the challenge name. Two variants matter:
-
-bash
-# don't clobber edits you made in the admin UI
-docker compose exec app python manage.py sync-content --no-overwrite
-
-# delete challenges whose source file is gone
-docker compose exec app python manage.py sync-content --prune
-
-And to see what it would import without touching anything:
-
-bash
-docker compose exec app python manage.py list-contentBreaking the command apart:
-
-docker compose exec app — run something inside the already-running app container
-python manage.py sync-content — the CLI command I added
-
-What it actually does, walking data/ (skipping images/ and TEMPLATE.md):
-
 - A folder → a category. 5. High Availability/ becomes category "High Availability".
 - A file in a folder → a challenge. 5.1 Set up HA cluster.md becomes a challenge named "Set up HA cluster".
 - A file at the top level → a page. 0. Welcome.md becomes /welcome.
-- The number prefix → order_id. 2.1 becomes 2001, so it sorts above 2.2.
-The trailing line after </div> → the flag. In 2.2 Review login logs.md that's the answer, and it's stripped from the visible text so students don't see it.
+- The number prefix → order_id. 5.1 becomes 5001, so it sorts above 5.2.
+- The trailing line after </div> → the flag. In 2.2 Review login logs.md that's the answer, and it's stripped from the visible text so students don't see it.
 - Front-matter (if present) overrides any of the above, and is how you set MCQ choices or requires_approval: true.
-/files/<md5hash>/x.jpg → /images/x.jpg so images resolve from data/images/.
+- /files/<md5hash>/x.jpg → /images/x.jpg so images resolve from data/images/.
 
 When you run it: after any edit to data/. Editing a markdown file changes nothing on the site until you sync.
 
 By default it updates existing challenges, matching on the challenge name. Two variants matter:
 
 bash
-'''
 # don't clobber edits you made in the admin UI
 docker compose exec app python manage.py sync-content --no-overwrite
 
-
 # delete challenges whose source file is gone
 docker compose exec app python manage.py sync-content --prune
-'''
 
 And to see what it would import without touching anything:
 
 bash
-'''
+```
 docker compose exec app python manage.py list-content
-'''
+```
+
+Breaking the command apart:
+
+`docker compose exec app` — run something inside the already-running app container
+`python manage.py sync-content` — the CLI command I added
 
 Two caveats worth knowing. Since it matches on name, renaming a challenge's title creates a second challenge rather than renaming the first — --prune cleans that up, but it deletes solves attached to the old one, so avoid renaming mid-workshop. And on existing challenges it refreshes description, category, order and flag, but leaves value and state alone, so point changes you make in the admin UI survive a sync.
 

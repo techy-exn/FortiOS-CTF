@@ -27,10 +27,10 @@ services:
       # Workshop content: challenges, pages and images are read from here,
       # so edits on the host are picked up by `manage.py sync-content`.
       - ./data:/opt/CTFd/data:ro
-      # Student theme (templates + compiled CSS/JS). Mounting it means edits on
-      # the host show up after a plain `docker compose restart app` + hard
-      # refresh, with no image rebuild. Rebuild is only needed for Python code.
-      - ./CTFd/themes/core-beta:/opt/CTFd/CTFd/themes/core-beta:ro
+      # NOTE: the theme is intentionally NOT mounted here. The image compiles
+      # the themes from source at build time (see the Dockerfile's themebuild
+      # stage), so the served CSS/JS/templates always match the source. To pick
+      # up a theme change, rebuild the image: `docker compose up -d --build`.
     depends_on:
       db:
         condition: service_healthy
