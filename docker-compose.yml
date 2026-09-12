@@ -27,6 +27,10 @@ services:
       # Workshop content: challenges, pages and images are read from here,
       # so edits on the host are picked up by `manage.py sync-content`.
       - ./data:/opt/CTFd/data:ro
+      # Student theme (templates + compiled CSS/JS). Mounting it means edits on
+      # the host show up after a plain `docker compose restart app` + hard
+      # refresh, with no image rebuild. Rebuild is only needed for Python code.
+      - ./CTFd/themes/core-beta:/opt/CTFd/CTFd/themes/core-beta:ro
     depends_on:
       db:
         condition: service_healthy

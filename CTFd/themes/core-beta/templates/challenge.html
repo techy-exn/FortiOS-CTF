@@ -214,16 +214,9 @@
                       :disabled="cooldown_left > 0"
                       @click.debounce.500ms="submitChallenge()"
                   >
-                    <span x-show="cooldown_left > 0">
-                      <i class="fas fa-hourglass-half pe-1"></i><span x-text="cooldown_left"></span>s
-                    </span>
-                    <span x-show="!(cooldown_left > 0)">
-                      {% if requires_approval %}
-                        Submit for review
-                      {% else %}
-                        {% trans %}Submit{% endtrans %}
-                      {% endif %}
-                    </span>
+                    <span x-text="(cooldown_left > 0)
+                        ? (cooldown_left + 's')
+                        : '{% if requires_approval %}Submit for review{% else %}{% trans %}Submit{% endtrans %}{% endif %}'">{% if requires_approval %}Submit for review{% else %}{% trans %}Submit{% endtrans %}{% endif %}</span>
                   </button>
                 {% endblock %}
               </div>
