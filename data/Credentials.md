@@ -163,7 +163,7 @@
           <td>IT Workstation 1</td>
           <td><span class="fos-pill">Password</span></td>
           <td><span class="fos-cred">Fortinet</span></td>
-          <td><span class="fos-cred">Exclusive123!</span></td>
+          <td><span class="fos-cred">Actions > Sent password</span></td>
         </tr>
         <tr>
           <td>FortiGate Edge</td>
