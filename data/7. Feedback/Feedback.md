@@ -9,7 +9,9 @@ state: hidden                     # visible | hidden
     <div class="challenge-label">FEEDBACK</div>
     <!-- CHALLENGE-->
 
-Please provide your feedback in the input-field bellow.
+Please provide your feedback using the link below.
+
+<a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=zELQALy-602wDR88jx3GYiFNOcq3jHJIqfWoJrIYSDhURElSUEU0M0VGRks5WFlMTUtTMDU1RFUzOC4u">Please fill out this form</a>
 
 Yeah sorry you will not win extra points but you will have all my respect 🙏
 
